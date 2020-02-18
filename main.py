@@ -3,7 +3,7 @@ from mnist import MNIST
 import matplotlib.pyplot as plt
 
 def loaddata():
-    mnist = MNIST('/Users/cong/Downloads/MNIST') #past the patch of data folder here
+    mnist = MNIST('/Users/cong/Downloads/MNIST') #paste the path of folder here
     x_train, y_train = mnist.load_training()  # 60000 samples
     x_test, y_test = mnist.load_testing()
     x_train = np.asarray(x_train).astype(np.float32)
@@ -71,7 +71,7 @@ def mlp_fit(X, y, W1, b1, W2, b2, eta,gamma):
         A1 = softmax_stable(Z1)
         Z2 = A1.dot(W2) + b2
         Yhat = softmax_stable(Z2) # shape (N, d2)
-        if i % 10 == 0: # print loss after each 1000 iterations
+        if i % 10 == 0: # print loss after each 10 iterations
             loss = crossentropy_loss(Yhat, y)
             print("iter %d, loss: %f" %(i, loss))
             loss_hist.append(loss)
@@ -87,13 +87,6 @@ def mlp_fit(X, y, W1, b1, W2, b2, eta,gamma):
         db1 = np.sum(E1, axis = 0)
         # Gradient Descent update
 
-
-        """
-        b1 += -eta * db1
-        W2 += -eta * dW2
-        b2 += -eta * db2
-        """
-
         W1,tmp = update(W1,dW1,gamma,eta,vW1)
         vW1 = tmp
         b1,tmp = update(b1,db1,gamma,eta,vb1)
@@ -102,12 +95,6 @@ def mlp_fit(X, y, W1, b1, W2, b2, eta,gamma):
         vW2 = tmp
         b2,tmp = update(b2,db2,gamma,eta,vb2)
         vb2 = tmp
-        """
-        W1 += -eta * dW1
-        b1 += -eta * db1
-        W2 += -eta * dW2
-        b2 += -eta * db2
-        """
     return (W1, b1, W2, b2, loss_hist[-1])
 N = 8000
 X,y,X_t,y_t = loaddata()
