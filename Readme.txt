@@ -1,3 +1,0 @@
-- First, copy the path of the folder containing data file to the line 6.
-- Change the learning rate, momemtum factors,epochs and number of hidden units from line 117 to line 120 corresponding to the comments beside.
-- the program will print percent of accuracy of classification from test data and loss cost.
